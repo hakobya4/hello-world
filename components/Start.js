@@ -14,13 +14,16 @@ const chatColorsOrange = {
   
 const Start = ({ navigation }) => {
   const [name, setName] = useState('');
+  // sets the initial state of the start background image to the orange version
   const [wallpaper, setWallpaper] = useState(Orange)
+  // sets the initial state of the chat's background color to orange
   const[chatsColor, setChatsColor] = useState(chatColorsOrange.light_orange)
   
 
 
   return (
     <View style={styles.container}>
+      {/* adds a background image to the app, source is set by setWallpaper function */}
       <ImageBackground source={wallpaper} resizeMode="cover" style={styles.container}>
         <View style={styles.titlecon}>
           <Text style={styles.title}>Zest Friends</Text>
@@ -33,6 +36,7 @@ const Start = ({ navigation }) => {
           placeholder='Your Name'
         />
         <Text style={[styles.choose, {alignSelf: 'flex-start'}]}>Choose Background:</Text>
+        {/* adds 4 different pseudo buttons to change the background image by calling setWallpaper function */}
         <View style={ styles.colorContainer}>
           <TouchableOpacity onPress={() => setWallpaper(Orange)}>
             <Image
@@ -57,9 +61,11 @@ const Start = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <Text style={[styles.choose, {alignSelf: 'flex-start'}]}>Choose Chat Background Color:</Text>
+         {/* adds 4 different pseudo buttons to change the background color of chat by calling setChatsColor function */}
         <View style={ styles.colorContainer}>
           <TouchableOpacity
-            style={ [styles.color, chatsColor === chatColorsOrange.light_orange && styles.colorPick, {backgroundColor: chatColorsOrange.light_orange}]}
+            style={ [styles.color, chatsColor === chatColorsOrange.light_orange && 
+              /*adds a border arround buttons to show picked */ styles.colorPick, {backgroundColor: chatColorsOrange.light_orange}]}
             onPress={() => setChatsColor(chatColorsOrange.light_orange)}>
           </TouchableOpacity>
           <TouchableOpacity
@@ -77,6 +83,7 @@ const Start = ({ navigation }) => {
         </View>
         <TouchableOpacity
           style={ styles.button}
+           /* adds a button to switch to chat screen sending the chat screen color and the name inputed to the chat screen */
           onPress={() => navigation.navigate('Chat', { name: name, chatsColor:chatsColor})}>
             <Text style={{ fontSize:16, color: '#FFFFFF', fontWeight:'600',}}>Start Chatting</Text>
         </TouchableOpacity>
