@@ -29,7 +29,7 @@ const Start = ({ navigation }) => {
           <Text style={styles.title}>Zest Friends</Text>
         </View>
         <View style={styles.body}>
-        <TextInputk
+        <TextInput
           style={[styles.textInput, styles.choose] }
           value={name}
           onChangeText={setName}
