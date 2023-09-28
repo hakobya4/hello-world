@@ -1,9 +1,12 @@
-import { StyleSheet, View, Text, Image, TextInput, TouchableOpacity, ImageBackground, } from 'react-native';
+import { StyleSheet, View, Text, Image, TextInput, TouchableOpacity, ImageBackground, Alert } from 'react-native';
 import  {useState} from 'react';
 import Orange from '../assets/Orange.jpg'
 import Blue from '../assets/Blue.jpg'
 import Multi from '../assets/Multi.jpg'
 import Pink from '../assets/Pink.jpg'
+import { getAuth, signInAnonymously } from "firebase/auth";
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(["AsyncStorage has been extracted from"]);
 
 const chatColorsOrange = {
     light_orange: 'rgba(255,165,0,0.5)',
@@ -13,6 +16,7 @@ const chatColorsOrange = {
   };
   
 const Start = ({ navigation }) => {
+  const auth = getAuth();
   const [name, setName] = useState('');
   // sets the initial state of the start background image to the orange version
   const [wallpaper, setWallpaper] = useState(Orange)
@@ -125,7 +129,15 @@ const Start = ({ navigation }) => {
           accessibilityRole="button"
           style={ styles.button}
            /* adds a button to switch to chat screen sending the chat screen color and the name inputed to the chat screen */
-          onPress={() => navigation.navigate('Chat', { name: name, chatsColor:chatsColor})}>
+          onPress={() => signInAnonymously(auth)
+              .then(result => {
+                navigation.navigate("Chat", {userID: result.user.uid, name, chatsColor:chatsColor });
+                Alert.alert("Signed in Successfully!");
+                })
+              .catch((error) => {
+              Alert.alert("Unable to sign in, try later again.");
+              })
+            }>
             <Text style={{ fontSize:16, color: '#FFFFFF', fontWeight:'600',}}>Start Chatting</Text>
         </TouchableOpacity>
         </View>

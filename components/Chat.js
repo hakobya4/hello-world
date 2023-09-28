@@ -1,11 +1,14 @@
-import { StyleSheet, View, Text, Platform, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, Text, Platform, KeyboardAvoidingView, FlatList } from 'react-native';
 import  {useEffect, useState} from 'react';
 import { GiftedChat, Bubble } from "react-native-gifted-chat";
+import { collection, getDocs, query, addDoc, onSnapshot, orderBy  } from "firebase/firestore";
 
-const Chat = ({route, navigation}) => {
-    const { name, chatsColor } = route.params;
+const Chat = ({route, navigation, db}) => {
+    const { name, chatsColor, userID } = route.params;
+    const [messages, setMessages] = useState([]);
     const onSend = (newMessages) => {
-      setMessages(previousMessages => GiftedChat.append(previousMessages, newMessages))}
+      addDoc(collection(db, "messages"), newMessages[0])
+    }
     {/* changes the bubble message color of the chat */}
     const renderBubble = (props) => {
       return <Bubble
@@ -20,33 +23,25 @@ const Chat = ({route, navigation}) => {
         }}
       />
     }
-    const [messages, setMessages] = useState([]);
-     useEffect(() => {
-    setMessages([
-      {
-        //Message sent when the user enters the chat
-        _id: 1,
-        text: "Hello developer",
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: "React Native",
-          avatar: "https://placeimg.com/140/140/any",
-        },
-      },
-      {
-        _id: 2,
-        text: 'You have entered the chat',
-        createdAt: new Date(),
-        // makes the messgae a system message above all other messages
-        system: true,
-      },
-    ]);
-  }, []);
+
     useEffect(() => {
-    //puts the name on the tab of the chat screen
-    navigation.setOptions({ title: name });
-  }, []);
+      //puts the name on the tab of the chat screen
+      navigation.setOptions({ title: name });
+      const q = query(collection(db, "messages"), orderBy("createdAt", "desc"));
+      const unsubMessages = onSnapshot(q, (documentsSnapshot) => {
+        let newMessages = [];
+        documentsSnapshot.forEach(doc => {
+          newMessages.push({ id: doc.id, ...doc.data(),
+          createdAt: new Date(doc.data().createdAt.toMillis())})
+        });
+        setMessages(newMessages);
+      });
+      // Clean up code
+      return () => {
+        if (unsubMessages) unsubMessages();
+      }
+    }, []);
+  
  return (
     
    <View style={[styles.container, {backgroundColor:chatsColor}]}>
@@ -55,7 +50,8 @@ const Chat = ({route, navigation}) => {
       renderBubble={renderBubble}
       onSend={messages => onSend(messages)}
       user={{
-        _id: 1
+        _id: userID,
+        name
       }}
     />
     {/* makes it so that when the keyboard is open user can see what they are typing */}
