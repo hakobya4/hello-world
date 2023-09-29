@@ -1,10 +1,12 @@
-import { StyleSheet, View, Platform, KeyboardAvoidingView} from 'react-native';
+import { StyleSheet, View, Platform, KeyboardAvoidingView, Button, Image} from 'react-native';
 import  {useEffect, useState} from 'react';
 import { GiftedChat, Bubble, InputToolbar} from "react-native-gifted-chat";
 import { collection,  query, addDoc, onSnapshot, orderBy  } from "firebase/firestore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import MapView from 'react-native-maps';
+import CustomActions from './CustomActions';
 
-const Chat = ({route, navigation, db, isConnected}) => {
+const Chat = ({route, navigation, db, isConnected, storage}) => {
     const { name, chatsColor, userID } = route.params;
     const [messages, setMessages] = useState([]);
     const onSend = (newMessages) => {
@@ -38,9 +40,10 @@ const Chat = ({route, navigation, db, isConnected}) => {
         // useEffect code is re-executed.
         if (unsubMessages) unsubMessages();
         unsubMessages = null;
-        //puts the name on the tab of the chat screen
         navigation.setOptions({ title: name });
+        //orders the messages in the database by the creation date
         const q = query(collection(db, "messages"), orderBy("createdAt", "desc"));
+        //runs update after the messages has been sent
         unsubMessages = onSnapshot(q, async(documentsSnapshot) => {
           let newMessages = [];
           documentsSnapshot.forEach(doc => {
@@ -55,8 +58,10 @@ const Chat = ({route, navigation, db, isConnected}) => {
         return () => {
           if (unsubMessages) unsubMessages();
         }
+      //update the permissions which depends on the connection
       }, [isConnected]);
 
+    //adds messages to an async cache which will be shown when offline
     const cacheMessages = async(messagesToCache) => {
       try {
         await AsyncStorage.setItem('messages', JSON.stringify(messagesToCache));
@@ -68,10 +73,37 @@ const Chat = ({route, navigation, db, isConnected}) => {
       const cachedMessages = await AsyncStorage.getItem("messages") || [];
       setMessages(JSON.parse(cachedMessages));
     }
+    
+  const renderCustomActions = (props) => {
+    return <CustomActions storage={storage} userID={userID} {...props} />;
+  };
+
+  const renderCustomView = (props) => {
+    const { currentMessage} = props;
+    if (currentMessage.location) {
+      return (
+          <MapView
+            style={{width: 150,
+              height: 100,
+              borderRadius: 13,
+              margin: 3}}
+            region={{
+              latitude: currentMessage.location.latitude,
+              longitude: currentMessage.location.longitude,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+            }}
+          />
+      );
+    }
+    return null;
+  }
   return (
     
    <View style={[styles.container, {backgroundColor:chatsColor}]}>
     <GiftedChat
+      renderActions={renderCustomActions}
+      renderCustomView={renderCustomView}
       messages={messages}
       renderBubble={renderBubble}
       renderInputToolbar={renderInputToolbar}

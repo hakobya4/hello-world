@@ -1,4 +1,4 @@
-import { StyleSheet, View, TextInput, Text,Button, Alert, ScrollView, LogBox} from 'react-native';
+import { StyleSheet, Alert} from 'react-native';
 import Start from './components/Start';
 import Chat from './components/Chat';
 import { NavigationContainer } from '@react-navigation/native';
@@ -7,6 +7,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, disableNetwork, enableNetwork} from "firebase/firestore";
 import { useNetInfo }from '@react-native-community/netinfo';
 import { useEffect } from "react";
+import { getStorage } from "firebase/storage";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,8 @@ const App = () => {
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
+  const storage = getStorage(app);
+
 
    useEffect(() => {
     if (connectionStatus.isConnected === false) {
@@ -46,7 +49,10 @@ const App = () => {
         <Stack.Screen
           name="Chat"
         >
-          {props => <Chat isConnected={connectionStatus.isConnected} db={db} {...props} />}
+          {props => <Chat 
+          isConnected={connectionStatus.isConnected} 
+          storage={storage} 
+          db={db} {...props} />}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
