@@ -46,3 +46,28 @@ To build a chat app for mobile devices using React Native. The app will provide 
 - "expo-media-library"
 - "expo-location"
 - "react-native-maps"
+
+## Environment
+- Expo: Create an [Expo account](https://expo.dev/signup) and install Expo CLI using npm install -g expo-cli.
+- Run your app using "npm start". Download Expo Go on OS of choice to test the app on a mobile phone.
+- Android Emulator: download Android Studio for android emulator for app testing (download the Android version with a Play Store and download Expo Go for testing)
+- iOS Simulator: download Xcode and its command terminal, run "open -a Simulator" to open up the iOS, when you start the app using "npm start" you can press i to download Expo Go automatically
+
+## Database
+- Sign-Up and make a new project in [Firebase](https://firebase.google.com/)
+- Disable Google analytics
+- Navigate to the build section within the collapsed menu
+- Under the Build dropdown build a database
+- Navigate to the rules tab of the project and change "allow read, write: if false;" to  "allow read, write: if true;"
+- Under the Build dropdown once again create an authentication
+- Navigate to the "Sign-in method" tab make sure anonymous is selected and enabled
+- Click on the cog symbol in the Project Overview option in the menu and go to project settings
+- Register a web app with a chosen name
+- Follow the steps to set up  Firebase configuration in the project
+
+## Storage For Images
+- Follow the steps for setting up the [Database](##Database)
+- Navigate to the build section within the collapsed menu
+- Under the Build dropdown build a storage
+- Navigate to the rules tab of the project and change "allow read, write: if false;" to  "allow read, write: if true;"
+- Unable to be tested with Android emulator
