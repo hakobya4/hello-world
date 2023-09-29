@@ -23,4 +23,26 @@ To build a chat app for mobile devices using React Native. The app will provide 
 - The app stores images in Firebase Cloud Storage. 
 - The app is able to read the user’s location data.
 - Location is sent via the chat in a map view. 
-- The chat interface and functionality is created using the Gifted Chat library. 
+- The chat interface and functionality is created using the Gifted Chat library.
+
+## Dependencies
+--"@react-native-community/masked-view"
+--"@react-navigation/native"
+--"@react-navigation/native-stack"
+--"expo"
+--"expo-status-bar"
+--"firebase"
+--"react"
+--"react-native"
+--"react-native-gesture-handler"
+--"react-native-gifted-chat"
+--"react-native-reanimated"
+--"react-native-safe-area-context"
+--"react-native-screens"
+--"react-navigation"
+--"@react-native-async-storage/async-storage"
+--"@react-native-community/netinfo"
+--"expo-image-picker"
+--"expo-media-library"
+--"expo-location"
+--"react-native-maps"
