@@ -7,7 +7,7 @@ To build a chat app for mobile devices using React Native. The app will provide 
 
 ## Table of Contents
 - [Screenshots](#Screenshots)
-- [Technical Requirements](#Technical)
+- [Technical Requirements](#Technical_Requirements)
 - [Dependencies](#Dependencies)
 - [Environment](#Environment)
 - [Database](#Database)
@@ -25,7 +25,7 @@ To build a chat app for mobile devices using React Native. The app will provide 
 <img src ="https://github.com/hakobya4/hello-world/assets/108638724/aa7a16fd-ab26-4c8d-a6d2-3e61b42b2320" width="200" height="400"/>
 <img src ="https://github.com/hakobya4/hello-world/assets/108638724/1b912482-57b6-4680-bdbe-9b71a3dc0c1f" width="200" height="400"/>
 
-## Technical Requirements
+## Technical_Requirements
 - The app is written in React Native. 
 - The app is developed using Expo. 
 - Chat conversations are stored in the Google Firestore Database. 
