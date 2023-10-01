@@ -5,13 +5,13 @@ Zest Friends is an app where users can communicate with each other. Built for mo
 ## Objective
 To build a chat app for mobile devices using React Native. The app will provide users with a chat interface and options to share images and their location.
 
-## Shortcuts
-[Screenshots](##Screenshhots)
-[Technical Requirements](##Technical%20Requirements)
-[Dependencies](##Dependencie)
-[Environment](##Environment)
-[Database](##Database)
-[Storage](##Storage)
+## Table of Contents
+[Screenshots](#Screenshhots)
+[Technical Requirements](#Technical%20Requirements)
+[Dependencies](#Dependencie)
+[Environment](#Environment)
+[Database](#Database)
+[Storage](#Storage)
 
 ## Features
 - A page where users can enter their name and choose a background color for the chat screen before joining the chat. 
@@ -68,7 +68,7 @@ To install the dependencies for this app run npm install after forking the code.
 - Follow the steps to set up  Firebase configuration in the project
 
 ## Storage
-- Follow the steps for setting up the [Database](##Database)
+- Follow the steps for setting up the [Database](#Database)
 - Navigate to the build section within the collapsed menu
 - Under the Build dropdown build a storage
 - Navigate to the rules tab of the project and change "allow read, write: if false;" to  "allow read, write: if true;"
