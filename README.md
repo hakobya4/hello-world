@@ -12,6 +12,14 @@ To build a chat app for mobile devices using React Native. The app will provide 
 - The chat must provide users with two additional communication features: sending images and location data. 
 - Data gets stored online and offline.
 
+## Screenshots
+
+![IMG_0088](https://github.com/hakobya4/hello-world/assets/108638724/723d678e-d78e-42de-8472-9d2841554516)
+![IMG_0089](https://github.com/hakobya4/hello-world/assets/108638724/47f7544e-79a5-41a3-ac95-f8576828610b)
+![IMG_0090](https://github.com/hakobya4/hello-world/assets/108638724/aa7a16fd-ab26-4c8d-a6d2-3e61b42b2320)
+![IMG_0091](https://github.com/hakobya4/hello-world/assets/108638724/1b912482-57b6-4680-bdbe-9b71a3dc0c1f)
+
+
 ## Technical Requirements
 - The app is written in React Native. 
 - The app is developed using Expo. 
