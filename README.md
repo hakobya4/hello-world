@@ -7,7 +7,7 @@ To build a chat app for mobile devices using React Native. The app will provide 
 
 ## Table of Contents
 - [Screenshots](#Screenshots)
-- [Technical Requirements](#Technical_Requirements)
+- [Technical_Requirements](#Technical_Requirements)
 - [Dependencies](#Dependencies)
 - [Environment](#Environment)
 - [Database](#Database)
