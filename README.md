@@ -6,12 +6,12 @@ Zest Friends is an app where users can communicate with each other. Built for mo
 To build a chat app for mobile devices using React Native. The app will provide users with a chat interface and options to share images and their location.
 
 ## Table of Contents
-[Screenshots](#Screenshhots)
-[Technical Requirements](#Technical%20Requirements)
-[Dependencies](#Dependencie)
-[Environment](#Environment)
-[Database](#Database)
-[Storage](#Storage)
+- [Screenshots](#Screenshots)
+- [Technical Requirements](#Technical)
+- [Dependencies](#Dependencies)
+- [Environment](#Environment)
+- [Database](#Database)
+- [Storage](#Storage)
 
 ## Features
 - A page where users can enter their name and choose a background color for the chat screen before joining the chat. 
