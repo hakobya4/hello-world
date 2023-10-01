@@ -20,17 +20,17 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage, userID })
         //transform images URI to blob which can be stored
         const blob = await response.blob();
         uploadBytes(newUploadRef, blob).then(async (snapshot) => {
-        const imageURL = await getDownloadURL(snapshot.ref)
-        onSend({ image: imageURL })
+            const imageURL = await getDownloadURL(snapshot.ref)
+            onSend({ image: imageURL })
         });
     }
     //permission to access library
     const pickImage = async () => {
         let permissions = await ImagePicker.requestMediaLibraryPermissionsAsync();
         if (permissions?.granted) {
-        let result = await ImagePicker.launchImageLibraryAsync();
-        if (!result.canceled) await uploadAndSendImage(result.assets[0].uri);
-        else Alert.alert("Permissions haven't been granted.");
+            let result = await ImagePicker.launchImageLibraryAsync();
+            if (!result.canceled) await uploadAndSendImage(result.assets[0].uri);
+            else Alert.alert("Permissions haven't been granted.");
         }
     }
 
@@ -59,8 +59,8 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage, userID })
             });
         } else Alert.alert("Error occurred while fetching location");
         } else {
-        Alert.alert("Permissions to read location aren't granted");
-      }
+            Alert.alert("Permissions to read location aren't granted");
+        }
     }
     //action bar of the app
     const onActionPress = () => {
@@ -73,15 +73,15 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage, userID })
             },
             async (buttonIndex) => {
                 switch (buttonIndex) {
-                case 0:
-                    pickImage()
-                    return;
-                case 1:
-                    takePhoto()
-                    return;
-                case 2:
-                    getLocation()
-                default:
+                    case 0:
+                        pickImage()
+                        return;
+                    case 1:
+                        takePhoto()
+                        return;
+                    case 2:
+                        getLocation()
+                    default:
                 }
             },
         );

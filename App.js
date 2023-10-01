@@ -1,4 +1,4 @@
-import { StyleSheet, Alert} from 'react-native';
+import { Alert} from 'react-native';
 import Start from './components/Start';
 import Chat from './components/Chat';
 import { NavigationContainer } from '@react-navigation/native';
@@ -27,7 +27,7 @@ const App = () => {
   const storage = getStorage(app);
 
 
-   useEffect(() => {
+  useEffect(() => {
     if (connectionStatus.isConnected === false) {
       Alert.alert("Connection Lost!");
       disableNetwork(db);
@@ -58,13 +58,5 @@ const App = () => {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems:'center'
-  },
-});
 
 export default App;

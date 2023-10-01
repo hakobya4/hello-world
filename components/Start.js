@@ -9,11 +9,11 @@ import { LogBox } from 'react-native';
 LogBox.ignoreLogs(["AsyncStorage has been extracted from"]);
 
 const chatColorsOrange = {
-    light_orange: 'rgba(255,165,0,0.5)',
-    pink: 'rgba(255,192,203,0.5)',
-    blue: 'rgba(0, 71, 171,0.5)',
-    red: 'rgba(176,0,0,1)',
-  };
+  light_orange: 'rgba(255,165,0,0.5)',
+  pink: 'rgba(255,192,203,0.5)',
+  blue: 'rgba(0, 71, 171,0.5)',
+  red: 'rgba(176,0,0,1)',
+};
   
 const Start = ({ navigation }) => {
   const auth = getAuth();
@@ -44,45 +44,48 @@ const Start = ({ navigation }) => {
         <View style={ styles.colorContainer}>
           <TouchableOpacity 
           // accessibility labels
-          accessible={true}
-          accessibilityLabel="Orange Background"
-          accessibilityHint="Change the background of the Start screen to orange pattern"
-          accessibilityRole="button"
-          onPress={() => setWallpaper(Orange)}>
+            accessible={true}
+            accessibilityLabel="Orange Background"
+            accessibilityHint="Change the background of the Start screen to orange pattern"
+            accessibilityRole="button"
+            onPress={() => setWallpaper(Orange)}>
             <Image
               style={styles.color}
-                source={Orange}
-              />
+              source={Orange}
+            />
           </TouchableOpacity>
           <TouchableOpacity 
-          accessible={true}
-          accessibilityLabel="Pink Background"
-          accessibilityHint="Change the background of the Start screen to pink pattern"
-          accessibilityRole="button"
-          onPress={() => setWallpaper(Pink)}>
+            accessible={true}
+            accessibilityLabel="Pink Background"
+            accessibilityHint="Change the background of the Start screen to pink pattern"
+            accessibilityRole="button"
+            onPress={() => setWallpaper(Pink)}>
             <Image
-            style={styles.color}
-            source={Pink}/>
+              style={styles.color}
+              source={Pink}
+            />
           </TouchableOpacity>
           <TouchableOpacity 
-          accessible={true}
-          accessibilityLabel="Blue Background"
-          accessibilityHint="Change the background of the Start screen to blue pattern"
-          accessibilityRole="button"
-          onPress={() => setWallpaper(Blue)}>
+            accessible={true}
+            accessibilityLabel="Blue Background"
+            accessibilityHint="Change the background of the Start screen to blue pattern"
+            accessibilityRole="button"
+            onPress={() => setWallpaper(Blue)}>
             <Image
-            style={styles.color}
-            source={Blue}/>
+              style={styles.color}
+              source={Blue}
+            />
           </TouchableOpacity>
           <TouchableOpacity 
-          accessible={true}
-          accessibilityLabel="Multicolor Background"
-          accessibilityHint="Change the background of the Start screen to mulicolor pattern"
-          accessibilityRole="button"
-          onPress={() => setWallpaper(Multi)}>
+            accessible={true}
+            accessibilityLabel="Multicolor Background"
+            accessibilityHint="Change the background of the Start screen to mulicolor pattern"
+            accessibilityRole="button"
+            onPress={() => setWallpaper(Multi)}>
             <Image
-            style={[styles.color]}
-            source={Multi}/>
+              style={[styles.color]}
+              source={Multi}
+            />
           </TouchableOpacity>
         </View>
         <Text style={[styles.choose, {alignSelf: 'flex-start'}]}>Choose Chat Background Color:</Text>
@@ -102,7 +105,7 @@ const Start = ({ navigation }) => {
             accessibilityLabel="Pink"
             accessibilityHint="Changes the background of the Chat screen to pink"
             accessibilityRole="button"
-            style={ [styles.color, chatsColor === chatColorsOrange.pink && styles.colorPick,  {backgroundColor: chatColorsOrange.pink}]}
+            style={ [styles.color, chatsColor === chatColorsOrange.pink && styles.colorPick, {backgroundColor: chatColorsOrange.pink}]}
             onPress={() => setChatsColor(chatColorsOrange.pink)}>
           </TouchableOpacity>
           <TouchableOpacity
@@ -110,36 +113,36 @@ const Start = ({ navigation }) => {
             accessibilityLabel="Blue"
             accessibilityHint="Changes the background of the Chat screen to blue"
             accessibilityRole="button"
-            style={ [styles.color, chatsColor === chatColorsOrange.blue && styles.colorPick,  {backgroundColor: chatColorsOrange.blue}]}
-              onPress={() => setChatsColor(chatColorsOrange.blue)}>
+            style={ [styles.color, chatsColor === chatColorsOrange.blue && styles.colorPick, {backgroundColor: chatColorsOrange.blue}]}
+            onPress={() => setChatsColor(chatColorsOrange.blue)}>
           </TouchableOpacity>
           <TouchableOpacity
             accessible={true}
             accessibilityLabel="Red"
             accessibilityHint="Changes the background of the Chat screen to red"
             accessibilityRole="button"
-            style={ [styles.color, chatsColor === chatColorsOrange.red && styles.colorPick,  {backgroundColor: chatColorsOrange.red}]}
-              onPress={() => setChatsColor(chatColorsOrange.red)}>
+            style={[styles.color, chatsColor === chatColorsOrange.red && styles.colorPick, {backgroundColor: chatColorsOrange.red}]}
+            onPress={() => setChatsColor(chatColorsOrange.red)}>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          accessible={true}
-          accessibilityLabel="Start Chatting"
-          accessibilityHint="Lets you navigate to the chat screen"
-          accessibilityRole="button"
-          style={ styles.button}
-           /* adds a button to switch to chat screen sending the chat screen color and the name inputed to the chat screen */
-          onPress={() => signInAnonymously(auth)
-              .then(result => {
-                navigation.navigate("Chat", {userID: result.user.uid, name, chatsColor:chatsColor });
-                Alert.alert("Signed in Successfully!");
+          <TouchableOpacity
+            accessible={true}
+            accessibilityLabel="Start Chatting"
+            accessibilityHint="Lets you navigate to the chat screen"
+            accessibilityRole="button"
+            style={ styles.button}
+            /* adds a button to switch to chat screen sending the chat screen color and the name inputed to the chat screen */
+            onPress={() => signInAnonymously(auth)
+                .then(result => {
+                  navigation.navigate("Chat", {userID: result.user.uid, name, chatsColor:chatsColor });
+                  Alert.alert("Signed in Successfully!");
+                  })
+                .catch((error) => {
+                Alert.alert("Unable to sign in, try later again.");
                 })
-              .catch((error) => {
-              Alert.alert("Unable to sign in, try later again.");
-              })
-            }>
+              }>
             <Text style={{ fontSize:16, color: '#FFFFFF', fontWeight:'600',}}>Start Chatting</Text>
-        </TouchableOpacity>
+          </TouchableOpacity>
         </View>
       </ImageBackground>
     </View>
